@@ -1,4 +1,4 @@
-UNLOAD
+export unload_location_query="UNLOAD
 ('
 SELECT 
 CAST( CLNDR_DATE   AS  VARCHAR(10) ) AS CLNDR_DATE 
@@ -24,6 +24,5 @@ CAST( CLNDR_DATE   AS  VARCHAR(10) ) AS CLNDR_DATE
 ,to_char(dim_load_date, ''YYYY-MM-DD HH24:MI:SS'') AS insert_date
  FROM $SCHEMA.$TABLE_N
  ')
-TO 's3://data-${S3_Source}-outbound/outbound/QUANTIUM/MASTER_DATA/DIM_DATE/DIM_DATE_${TS_Date}_' WITH CREDENTIALS 'aws_access_key_id=${AWS_ACCESS_KEY_ID};aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}' 
-DELIMITER '|' ALLOWOVERWRITE NULL AS '' PARALLEL OFF GZIP manifest
-;
+ TO 's3://data-${S3_Source}-outbound/outbound/QUANTIUM/MASTER_DATA/DIM_DATE/DIM_DATE_${TS_Date}_' WITH CREDENTIALS 'aws_access_key_id=${AWS_ACCESS_KEY_ID};aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}' 
+DELIMITER '|' ALLOWOVERWRITE NULL AS '' PARALLEL OFF GZIP manifest;"
